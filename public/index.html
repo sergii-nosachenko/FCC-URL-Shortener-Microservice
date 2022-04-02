@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>FCC certification challenge #3. URL Shortener Microservice.</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="public/style.css" />
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="#">upgrade your browser</a> to improve your experience.
+      </p>
+    <![endif]-->
+    <div class="content">
+      <h1>FCC certification challenge #3. URL Shortener Microservice.</h1>
+      <div class="info">
+        <h2>How to use:</h2>
+        <p>
+          Send POST request to API endpoint <code>/api/shorturl</code> with
+          valid url and receive a json object containing keys:
+        </p>
+        <p><b>original_url</b> - original url from your request</p>
+        <p>
+          <b>short_url</b> - shortened url for using in
+          <code>/api/shorturl/[short_url]</code>
+        </p>
+        <p>If your url is invalid you'll get an error.</p>
+      </div>
+      <div class="form">
+        <form action="api/shorturl" method="post">
+          <input type="text" name="url" id="url" />
+          <button type="submit">Shorten</button>
+        </form>
+      </div>
+    </div>
+
+    <script></script>
+  </body>
+</html>

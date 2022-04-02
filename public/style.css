@@ -1,0 +1,60 @@
+/* index.css */
+@import 'open-props.min.css';
+@import 'normalize.min.css';
+
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background-image: var(--gradient-15);
+}
+
+h1 {
+  font-size: var(--font-size-fluid-2);
+}
+h2 {
+  font-size: var(--font-size-fluid-1);
+  max-inline-size: var(--size-header-8);
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: var(--size-3);
+  height: calc(100vh);
+  text-align: center;
+}
+
+.info {
+  margin-block: var(--size-3);
+}
+
+.form {
+  padding: var(--size-6);
+  border-radius: var(--radius-2);
+  box-shadow: var(--shadow-3);
+  background-color: var(--gray-9);
+  width: min(calc(100% - var(--size-2) * 2), 40rem);
+}
+
+.form:hover {
+  box-shadow: var(--shadow-4);
+}
+
+.form form {
+  display: grid;
+  grid-template-columns: 1fr 100px;
+  gap: var(--size-2);
+}
+
+.form button {
+  border-radius: var(--radius-2);
+  background-color: var(--orange-5);
+  color: var(--surface-1);
+}
+
+.form button:hover {
+  background-color: var(--orange-8);
+}
