@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const dns = require('dns');
+const isUrlHttp = require('is-url-http');
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -15,22 +15,14 @@ class UrlsDb {
 
   // Method to add new record to db
   setUrl(original_url, address) {
-    // try to find record with the same address (filters records with same IP)
-    let thisUrl = this.urls.find((url) => url.address == address);
-    // add new record if it's really new
-    if (!thisUrl) {
-      thisUrl = {
-        short_url: this.urls.length + 1,
-        original_url,
-        address
-      };
-      this.urls.push(thisUrl);
-    }
-    // return record object
-    return {
-      original_url: original_url,
-      short_url: thisUrl.short_url
+    // add new record
+    const thisUrl = {
+      short_url: this.urls.length + 1,
+      original_url
     };
+    this.urls.push(thisUrl);
+    // return recorded object
+    return thisUrl;
   }
 
   getUrl(short_url) {
@@ -77,25 +69,16 @@ app.get('/api/shorturl/:shorturl', (req, res) => {
 
 // API POST route
 app.post('/api/shorturl', (req, res) => {
-  // remove protocol and trailingSlash as it can cause dns lookup error
-  let protocol = req.body.url.match(/https?:\/\//);
-  protocol = protocol ? protocol[0] : 'http://';
-  let trailingSlash = req.body.url.match(/\/$/);
-  trailingSlash = trailingSlash ? trailingSlash[0] : '';
-  const url = req.body.url.replace(protocol, '').replace(trailingSlash, '');
-  // call dns lookup for url
-  dns.lookup(url, { family: 4 }, (err, address) => {
-    // if url is accessible add it to db and return json with new record
-    if (address) {
-      res.json(db.setUrl(protocol + url + trailingSlash, address));
+  // if url is valid add it to db and return json with new record
+  if (isUrlHttp(req.body.url)) {
+    res.json(db.setUrl(req.body.url));
 
-      // if error return error json object
-    } else {
-      res.json({
-        error: 'invalid url'
-      });
-    }
-  });
+    // else return error json object
+  } else {
+    res.json({
+      error: 'invalid url'
+    });
+  }
 });
 
 // SERVER RUN
