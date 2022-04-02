@@ -5,18 +5,22 @@
 * {
   box-sizing: border-box;
 }
+
 body {
   margin: 0;
   background-image: var(--gradient-15);
+  min-width: var(--size-sm);
 }
 
 h1 {
   font-size: var(--font-size-fluid-2);
 }
+
 h2 {
   font-size: var(--font-size-fluid-1);
   max-inline-size: var(--size-header-8);
 }
+
 .content {
   display: flex;
   flex-direction: column;
@@ -36,7 +40,7 @@ h2 {
   border-radius: var(--radius-2);
   box-shadow: var(--shadow-3);
   background-color: var(--gray-9);
-  width: min(calc(100% - var(--size-2) * 2), 40rem);
+  width: min(calc(100% - var(--size-2) * 2), var(--size-md));
 }
 
 .form:hover {
