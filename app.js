@@ -14,7 +14,7 @@ class UrlsDb {
   }
 
   // Method to add new record to db
-  setUrl(original_url, address) {
+  setUrl(original_url) {
     // add new record
     const thisUrl = {
       short_url: this.urls.length + 1,
