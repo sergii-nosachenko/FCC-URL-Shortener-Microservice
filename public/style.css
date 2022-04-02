@@ -31,6 +31,10 @@ h2 {
   text-align: center;
 }
 
+.content p {
+  line-height: var(--font-lineheight-4);
+}
+
 .info {
   margin-block: var(--size-3);
 }
